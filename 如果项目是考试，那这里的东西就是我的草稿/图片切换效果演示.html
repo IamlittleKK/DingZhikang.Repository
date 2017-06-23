@@ -1,0 +1,122 @@
+﻿<!DOCTYPE>
+<html>
+<head>
+<title>图片切换效果演示</title>
+<meta="UTF-8">
+<style type="text/css">
+#frame
+{
+	width:100%;
+	height:500px;
+	padding:10px;
+	background-color:black;
+	position:relative;
+	border-radius:20px;
+}
+img
+{
+	position:absolute;
+	left:10px;
+	top:10px;
+	width:1325px;
+	height:500px;
+	border-radius:20px;
+}
+.hide
+{
+	opacity:0;
+}
+img
+{
+	-webkit-transition-property:all;
+	-webkit-transition-duration:2s;
+}
+.e1_out
+{
+	opacity:0;
+	-webkit-transition-timing-funcion:ease-out;
+}
+.e1_in
+{
+	opacity:1;
+	-webkit-transition-timing-function:ease-in;
+}
+.e2_out
+{
+	opacity:0;
+	-webkit-transition-timing-function:ease-out;
+	left:220px;
+}
+.e2_in
+{
+	opacity:1;
+	-webkit-transition_timing-function:ease-in;
+}
+.e3_out
+{
+	opacity:0;
+	-webkit-transform:rotate(-360deg);
+	-webkit-transition-timing-function:ease-out;
+}
+.e3_in
+{
+	opacity:1;
+	-webkit-transform:ratate(-360deg);
+	-webkit-transition-timing-function:ease-in;
+}
+.e4_out
+{
+	opacity:0;
+	-webkit-transform:rotate(-360deg) scale(0,0);
+	-webkit-transition-timing-function:ease-out;
+}
+.e4_in
+{
+	opacity:1;
+	-wenkit-transform:rotate(-360deg) scale(1,1);
+	-webkit-transition-timing-function:ease-in;
+}
+.e5_out
+{
+	opacity:0;
+	-webkit-transform:scale(0,0);
+	-webkit-transition-timing-function:ease-out;
+}
+.e5_in
+{
+	opacity:1;
+	-webkit-transform:scale(1,1);
+	-webkit-transition-timing-function:ease-in
+}
+</style>
+<script type="text/javascript">
+	function slide(c1,c2)
+		{
+			var img1=document.getElementById('img1');
+			var img2=document.getElementById('img2');
+			if(img1.className==c1)
+			{
+				img1.className=c2;
+				img2.className=c1;
+			}
+			else
+			{
+				img1.className=c1;
+				img2.className=c2;
+			}	
+		}
+</script>
+</head>
+<body>
+<h1>图片切换效果演示</h1>
+<div id="frame">
+<img src="./img1.jpg" id="img1">
+<img src="./img2.jpg" id="img2" class="hide">
+</div>
+<button onClick=slide('e1_out','e1_in')>淡入淡出切换</button>
+<button onClick=slide('e2_out','e2_in')>移动切换</button>
+<button onClick=slide('e3_out','e3_in')>旋转切换</button>
+<button onClick=slide('e5_out','e5_in')>缩放切换</button>
+<button onClick=slide('e4_out','e4_in')>旋转缩放切换</button>
+</body>
+</html>

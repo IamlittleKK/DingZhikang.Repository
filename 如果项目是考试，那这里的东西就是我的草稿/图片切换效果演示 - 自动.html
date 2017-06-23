@@ -1,0 +1,108 @@
+﻿<!DOCTYPE>
+<html>
+<head>
+<title>图片切换效果演示</title>
+<meta="UTF-8">
+<style type="text/css">
+body{
+	overflow:auto;
+}
+#frame
+{
+	width:100%;
+	height:100vh;
+	background-color:black;
+	position:relative;
+	border-radius:20px;
+}
+img
+{
+	position:absolute;
+	width:100%;
+	height:100%;
+	border-radius:20px;
+}
+.hide
+{
+	opacity:0;
+}
+img
+{
+	-webkit-transition-property:all;
+	-webkit-transition-duration:2s;
+}
+.e1_out
+{
+	opacity:0;
+	-webkit-transition-timing-funcion:ease-out;
+}
+.e1_in
+{
+	opacity:1;
+	-webkit-transition-timing-function:ease-in;
+}
+</style>
+<script type="text/javascript">
+var int=self.setInterval("slide()",3000)
+var show=1;
+
+	function slide()
+		{	
+            var next=show+1;
+					
+			var imgshow=document.getElementById('img'+show);
+			var imgnext=document.getElementById('img'+next);
+			imgshow.className="e1_out";
+			imgnext.className="e1_in";
+			//alert("show="+show+",next="+next);
+			show=next;
+			if(show==13)
+			{
+				show=1;
+			}
+			
+		}
+	function slide1()
+		{	
+            var next=get_random(1,14);
+			while(next==show)
+				{
+					next=get_random(1,14);
+				}		
+			var imgshow=document.getElementById('img'+show);
+			var imgnext=document.getElementById('img'+next);
+			imgshow.className="e1_out";
+			imgnext.className="e1_in";
+			//alert("show="+show+",next="+next);
+			show=next;
+			
+		}
+	function get_random(min,max)
+	    {
+			var seed=Math.random();
+			var result=seed*(max-min);
+			result+=min;
+			result=parseInt(result,10);
+			return result;
+		}	
+	
+</script>
+</head>
+<body>
+<div id="frame">
+<img src="./img1.jpg" id="img1" >
+<img src="./img2.jpg" id="img2" class="hide">
+<img src="./img3.jpg" id="img3" class="hide">
+<img src="./img4.jpg" id="img4" class="hide">
+<img src="./img5.jpg" id="img5" class="hide">
+<img src="./img6.jpg" id="img6" class="hide">
+<img src="./img7.jpg" id="img7" class="hide">
+<img src="./img8.jpg" id="img8" class="hide">
+<img src="./img9.jpg" id="img9" class="hide">
+<img src="./img10.jpg" id="img10" class="hide">
+<img src="./img11.jpg" id="img11" class="hide">
+<img src="./img12.jpg" id="img12" class="hide">
+<img src="./img13.jpg" id="img13" class="hide">
+</div>
+</body>
+</html>

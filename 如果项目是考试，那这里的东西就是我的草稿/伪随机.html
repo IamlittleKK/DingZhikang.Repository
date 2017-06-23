@@ -1,0 +1,38 @@
+﻿<!DOCTYPE>
+<html>
+<head>
+<title>图片切换效果演示</title>
+<meta="UTF-8">
+<style type="text/css">
+
+</style>
+<script type="text/javascript">
+
+var int=self.setInterval("slide()",1000)
+var show=1;
+	function slide()
+		{	
+            var next=get_random(1,11);
+			while(next==show)
+				{
+					next=get_random(1,11);
+				}		
+			//alert("show="+show+",next="+next);
+			show=next;			
+		}
+	function get_random(min,max)
+	    {
+			var seed=0;
+			var result=0;
+		    seed=Math.random();
+			result=seed*(max-min);
+			result+=min;
+			result=parseInt(result,10);
+			return result;
+		}
+</script>
+</head>
+<body onload="slide()">
+<h1>图片切换效果演示</h1>
+</body>
+</html>

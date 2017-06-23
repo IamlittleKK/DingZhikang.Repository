@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>基本转换效果演示</title>
+<style type="text/css">
+ul{list-style-type:none;}
+li
+{
+	width:100px;
+	height:50px;
+	text-align:center;
+	margin:20px;
+	padding:5px;
+	float:left;
+	border:solid 1px gray;
+	border-radius:5px;
+	background-color:#ffe;
+	-webkit-transition-property:all;
+	-webkit-transition-duration:0.5s;
+}
+li.a:hover
+{
+	-webkit-transform:scale(2,2);
+}
+li.a:active
+{
+	-webkit-transform:scale(1.2,1.2);
+}
+li.b:hover
+{
+	-webkit-transform:scale(1.2,1.2);
+	background-color:#ff0;
+}
+li.c:hover
+{
+	-webkit-transform:skew(0,-150deg);
+}
+li.d:hover
+{
+	-webkit-transform:rotate(180deg);
+}
+li.e:hover
+{
+	-webkit-transform:rotate(360deg) scale(2,2);
+	background-color:skyblue;
+	color:gray;
+}
+li.e:active
+{
+	-webkit-transform:rotate(360deg) scale(1.2,1.2);
+	background-color:skyblue;
+	color:gray;
+}
+</style>
+<script type="text/javascript" src="./show.js"></script>
+</head>
+
+<body>
+<h1>基本转换效果演示</h1>
+<ul>
+<li class="a">转换效果</li>
+<li class="b">转换效果</li>
+<li class="c">转换效果</li>
+<li class="d">转换效果</li>
+<li class="e">转换效果</li>
+</ul>
+
+<audio src="./squash.ogg" controls="controls"></audio>
+
+<div id="test" style="width:100px;height:100px;border:1px solid;margin-top:50px;"></div>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+	$( document ).ready(function(){
+		document.getElementById('test').addEventListener('mouseenter',mouseEnterHandler);
+		document.getElementById('test').addEventListener('mouseleave',mouseLeaveHandler);
+		
+						
+			
+			
+		function mouseEnterHandler(event){
+			document.getElementById('test').style.backgroundColor="red";
+			
+			var box=document.createElement('div');
+			document.body.appendChild(box);			
+			box.id='helloworld';			
+		    document.getElementById('helloworld').style.width="100px";
+		    document.getElementById('helloworld').style.height="100px";
+		    document.getElementById('helloworld').style.backgroundColor="yellow";
+			
+			
+			var pElement=document.createElement('p');
+			var txtNode=document.createTextNode('23333');
+			pElement.appendChild(txtNode);
+			document.body.appendChild(pElement);
+			pElement.id="prograph";
+		}
+		function mouseLeaveHandler(event){
+			document.getElementById('test').style.backgroundColor="white";
+			
+			var box=document.getElementById('helloworld');
+			box.parentNode.removeChild(box);
+			var pElement=document.getElementById('prograph');
+			pElement.parentNode.removeChild(pElement);
+			
+			
+		}					
+	});
+		
+</script>
+</body>
+</html>

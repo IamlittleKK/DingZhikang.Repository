@@ -1,0 +1,104 @@
+﻿<!DOCTYPE>
+<html>
+<head>
+<title>图片切换效果演示</title>
+<meta="UTF-8">
+<style type="text/css">
+body{
+	width:100%;
+	heigth:100%;
+	background-color:#595959;
+	margin:0 0;
+	overflow:hidden;
+}
+</style>
+</head>
+<body>
+<p id="p1" style="width:200px;height:50px;border:1px solid;position:absolute;background-color:red;z-index:1;text-align:center;">当前top值为:0</p>
+<img src="./img1.jpg" id="img1" >
+<img src="./img_bgm.png" id="img2" >
+
+<script type="text/javascript">
+//模仿PC锁屏
+//丁志康
+//最后更新2017/6/10
+		var counter=0;//计数器,记录上升和下降的次数，每次变化window.innerHeight)/500个单位高度
+		var topValue=0;//记录top的数值
+		var imgs=document.getElementsByTagName('img');
+		var id_setlock=0;
+		var id_setactive=0;
+	(function(){
+	//初始化图片属性
+		
+		//设置宽高为窗口的宽高
+		for(var i=0;i<imgs.length;i++)
+		{
+			imgs[i].width=window.innerWidth;
+			imgs[i].height=window.innerHeight;
+		}
+
+		//使得“屏保”覆盖桌面
+		imgs[0].style.position="absolute";
+		imgs[0].top="0px";
+				
+		//添加keydown事件的句柄active，按下按键则屏保以上升的方式消失
+		document.addEventListener('keydown',active);
+		//添加click事件的句柄lock,抬起按键则屏保以下降的方式出现
+		document.addEventListener('click',lock);
+		
+		//lock方法使得屏保以(窗口高度/300)/每0.1毫秒的速度下降
+		function lock()
+		{	clearInterval(id_setactive);
+			//设置定时器，没0.1毫秒调用一次img_down(id,imgs)方法
+			id_setlock=setInterval('img_down(id_setlock,imgs)',0.1);
+			//console.log(id);
+		}
+		
+		//active方法使得屏保以 (窗口高度/500)/每0.1毫秒的速度上升
+		function active()
+		{	
+			clearInterval(id_setlock);
+			//设置定时器，没0.1毫秒调用一次img_up(id,imgs)方法
+			id_setactive=setInterval('img_up(id_setactive,imgs)',0.1);
+			//console.log(id);			
+		}
+	})();
+	
+	//img_up()方法使得屏保的位置上升1个单位(窗口高度/300)的高度
+	function img_up(id,imags)
+			{	
+				//console.log(id);
+				if(counter<500){	
+					imgs[0].style.top=parseFloat(topValue-(((window.innerHeight)/500)))+"px";
+					topValue=parseFloat(topValue-((window.innerHeight)/500));
+
+					var pElement=document.getElementById('p1');		
+					pElement.innerHTML="当前top值为: "+topValue;					
+					counter+=1;
+				}
+				else//当counter>500时屏保在屏幕外了，取消setInterval()的作用
+				{
+					clearInterval(id);
+				}
+			}
+			
+	//img_down()方法使得屏保的位置下降1个单位(窗口高度/300)的高度
+	function img_down(id,imags)
+			{	
+				if(counter>0){							
+					imgs[0].style.top=parseFloat(topValue+((window.innerHeight)/500))+"px";
+					topValue=parseFloat(topValue+((window.innerHeight)/500));
+					
+					var pElement=document.getElementById('p1');
+					pElement.innerHTML="当前top值为: "+topValue;
+					counter-=1;
+				}
+				else//当counter=0时屏保在屏幕内了，取消setInterval()的作用
+				{
+					clearInterval(id);
+				}
+			}
+	
+</script>
+</body>
+</html>
